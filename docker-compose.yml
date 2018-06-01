@@ -17,7 +17,7 @@ services:
       TZ: Asia/Tokyo
   db:
     image: mysql:5.7
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+    command: mysqld
     volumes:
       - db-data:/var/lib/mysql
       - ./config/db/development:/etc/mysql/conf.d
