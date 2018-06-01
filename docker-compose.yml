@@ -1,0 +1,28 @@
+version: '3'
+services:
+  web:
+    build: .docker/web/
+    command: sh -c "cd /wp && php -S 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/wp
+    depends_on:
+      - db
+    environment:
+      WP_DB_NAME: wp
+      WP_DB_USER: root
+      WP_DB_PASSWORD: password
+      WP_DB_HOST: db
+      TZ: Asia/Tokyo
+  db:
+    image: mysql:5.7
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./config/db/development:/etc/mysql/conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      TZ: Asia/Tokyo
+volumes:
+  db-data:
