@@ -24,5 +24,15 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       TZ: Asia/Tokyo
+  webpack:
+    image: node:8.11-alpine
+    command: sh -c "cd /wp/wp-content/themes/${THEME_NAME} && (yarn check || yarn install) && yarn run webpack-dev-server --progress --color --config /wp/wp-content/themes/${THEME_NAME}/config/webpack/development.js"
+    volumes:
+      - ./wp-content/themes/${THEME_NAME}:/wp/wp-content/themes/${THEME_NAME}
+    ports:
+      - 8080:8080
+    environment:
+      TZ: Asia/Tokyo
+      NODE_ENV: development
 volumes:
   db-data:
