@@ -54,6 +54,6 @@
 	?>
 
 	<div class="site-content-contain">
-        <script src='//localhost:8080/dist/js/application.js'></script>
-        <link href="//localhost:8080/dist/stylesheets/application.css" media="screen" rel="stylesheet">
+        <script src="<?php echo assets_path('js/application.js'); ?>"></script>
+        <link href="<?php echo assets_path('stylesheets/application.css'); ?>" media="screen" rel="stylesheet">
 		<div id="content" class="site-content">

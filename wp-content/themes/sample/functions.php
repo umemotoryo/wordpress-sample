@@ -560,6 +560,15 @@ function twentyseventeen_widget_tag_cloud_args( $args ) {
 }
 add_filter( 'widget_tag_cloud_args', 'twentyseventeen_widget_tag_cloud_args' );
 
+function assets_path( $path ) {
+    $json = file_get_contents(get_parent_theme_file_path("/dist/manifest.json"));
+    $script_path = json_decode($json, true)[$path];
+    if ( empty( $script_path ) ) {
+        throw new InvalidArgumentException('No such '.$path.'. Add webpack entry path please.');
+    }
+    return $script_path;
+}
+
 /**
  * Implement the Custom Header feature.
  */
