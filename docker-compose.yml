@@ -34,5 +34,6 @@ services:
     environment:
       TZ: Asia/Tokyo
       NODE_ENV: development
+      ASSET_HOST: http://0.0.0.0:8080
 volumes:
   db-data:
